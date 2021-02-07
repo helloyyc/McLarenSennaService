@@ -34,7 +34,7 @@ public class Product extends BaseEntity {
     private Long categoryId;
 
     /**
-     * 数据类型 1 json
+     * 数据格式 1 json
      */
     private Integer dataFormat;
 

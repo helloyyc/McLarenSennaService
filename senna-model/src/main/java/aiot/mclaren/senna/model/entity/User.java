@@ -54,9 +54,9 @@ public class User extends BaseEntity {
     private String email;
 
     /**
-     * 是否启用 1启用 0禁用
+     * 是否启用 true启用 false禁用
      */
-    private Integer enable;
+    private Boolean enable;
 
 
 }
