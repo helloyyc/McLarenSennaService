@@ -28,4 +28,9 @@ public class ApiException extends RuntimeException implements ResultCode {
         super(e);
         this.code = DefaultCode.UNKNOWN_ERROR.getCode();
     }
+
+    @Override
+    public String getMessage() {
+        return this.msg;
+    }
 }
