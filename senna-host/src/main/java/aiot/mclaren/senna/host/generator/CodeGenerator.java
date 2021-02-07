@@ -42,8 +42,12 @@ public class CodeGenerator {
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException {
         Properties properties = new Properties();
-        InputStream in = CodeGenerator.class.getClassLoader().getResourceAsStream("private_infos.properties");
-        properties.load(in);
+
+        try(InputStream in = CodeGenerator.class.getClassLoader().getResourceAsStream("private_infos.properties")) {
+            properties.load(in);
+        } catch (IOException e) {
+            throw new RuntimeException("read config file error");
+        }
         String jdbcUrl =
             properties.getProperty("database.url");
         String username = properties.getProperty("database.username");

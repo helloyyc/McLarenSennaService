@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lsj
  * @date 2021/2/6 16:45
  */
-@Api(value = "产品", tags = "产品")
+@Api(tags = "产品")
 @FeignClient(name = "${spring.application.name}", contextId = "product")
 @RequestMapping("product")
 public interface ProductApi {

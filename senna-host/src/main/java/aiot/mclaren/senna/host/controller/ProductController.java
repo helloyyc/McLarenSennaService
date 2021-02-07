@@ -27,7 +27,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public DataResponse<ProductDTO> create(ProductBody body) {
-        return null;
+        return productService.create(body);
     }
 }
 

@@ -32,7 +32,7 @@ public class ProductDTO extends BaseDTO{
     private Integer secureMode;
 
     @ApiModelProperty("产品状态")
-    private Long productStatus;
+    private Integer productStatus;
 
     @ApiModelProperty("网络类型")
     private Long netType;

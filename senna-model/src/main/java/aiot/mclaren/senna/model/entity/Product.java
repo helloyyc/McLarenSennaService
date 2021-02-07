@@ -51,7 +51,7 @@ public class Product extends BaseEntity {
     /**
      * 产品状态
      */
-    private Long productStatus;
+    private Integer productStatus;
 
     /**
      * 网络类型
