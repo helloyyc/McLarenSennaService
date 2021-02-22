@@ -1,4 +1,4 @@
-package aiot.mclaren.senna.host.swagger;
+package aiot.mclaren.senna.host.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2021-01-29
  **/
 @SpringBootApplication
-@MapperScan({"aiot.mclaren.senna.host.mapper"})
 @EnableTransactionManagement
 public class SennaApplication {
     public static void main(String[] args) {

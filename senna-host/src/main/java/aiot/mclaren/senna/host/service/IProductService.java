@@ -4,6 +4,8 @@ import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.Product;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
+import aiot.mclaren.senna.sdk.request.ProductQuery;
+import aiot.mclaren.senna.sdk.response.SimplePage;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -16,4 +18,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IProductService extends IService<Product> {
     DataResponse<ProductDTO> create(ProductBody body);
+
+    DataResponse<SimplePage<ProductDTO>> selectPage(ProductQuery query);
 }

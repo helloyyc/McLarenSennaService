@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2021/2/6 17:29
  */
 @Api(tags = "用户管理")
-@RequestMapping("user")
+@RequestMapping("users")
 @FeignClient(name = "${spring.application.name}", contextId = "user")
 public interface UserApi {
 
