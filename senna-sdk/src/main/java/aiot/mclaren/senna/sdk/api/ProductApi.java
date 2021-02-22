@@ -6,6 +6,7 @@ import aiot.mclaren.senna.sdk.request.ProductBody;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +22,5 @@ public interface ProductApi {
 
     @ApiOperation("创建产品")
     @PostMapping("create")
-    DataResponse<ProductDTO> create(@RequestBody ProductBody body);
+    DataResponse<ProductDTO> create(@Validated @RequestBody ProductBody body);
 }

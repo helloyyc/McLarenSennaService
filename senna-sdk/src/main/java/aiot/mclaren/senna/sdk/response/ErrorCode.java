@@ -1,4 +1,4 @@
-package aiot.mclaren.senna.model.constant;
+package aiot.mclaren.senna.sdk.response;
 
 import aiot.mclaren.commons.response.ResultCode;
 import lombok.Getter;
@@ -9,8 +9,20 @@ import lombok.Getter;
  */
 @Getter
 public enum ErrorCode implements ResultCode {
+    /**
+     * 参数不合法
+     */
+    ARGUMENT_ILLEGAL(10001, "参数不合法"),
+    /**
+     * 用户相关错误码
+     */
     ACCOUNT_NOT_EXISTS(10100, "用户不存在"),
     ACCOUNT_OR_PASSWORD_ERROR(10101, "账户或者密码错误"),
+
+    /**
+     * 品类相关错误码
+     */
+    CATEGORY_NOT_FOUND(10200, "指定品类不存在"),
     DATABASE_OPERATION_EXCEPTION(20100, "数据库操作异常")
     ;
 

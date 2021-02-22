@@ -34,7 +34,7 @@ public class Product extends BaseEntity {
     private Long categoryId;
 
     /**
-     * 数据格式 1 json
+     * 数据格式 1 json 2 透传
      */
     private Integer dataFormat;
 
@@ -54,7 +54,7 @@ public class Product extends BaseEntity {
     private Integer productStatus;
 
     /**
-     * 网络类型
+     * 网络类型 1: WIFI 2: 蜂窝(2G/3G/4G/5G) 3: 以太网 4: 其他
      */
     private Long netType;
 

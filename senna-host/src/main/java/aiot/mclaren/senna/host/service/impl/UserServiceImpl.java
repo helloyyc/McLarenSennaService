@@ -2,11 +2,10 @@ package aiot.mclaren.senna.host.service.impl;
 
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.commons.response.DefaultCode;
-import aiot.mclaren.commons.response.ResultCode;
 import aiot.mclaren.senna.host.common.SecurityUtils;
 import aiot.mclaren.senna.host.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.UserConverter;
-import aiot.mclaren.senna.model.constant.ErrorCode;
+import aiot.mclaren.senna.sdk.response.ErrorCode;
 import aiot.mclaren.senna.model.entity.User;
 import aiot.mclaren.senna.host.mapper.UserMapper;
 import aiot.mclaren.senna.host.service.IUserService;
@@ -16,13 +15,10 @@ import aiot.mclaren.senna.sdk.request.UserRegisterBody;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 /**
  * <p>
