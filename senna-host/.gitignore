@@ -39,3 +39,4 @@ hs_err_pid*
 
 # Config Files #
 src/main/resources/private_infos.properties
+src/test/resources/category.json
