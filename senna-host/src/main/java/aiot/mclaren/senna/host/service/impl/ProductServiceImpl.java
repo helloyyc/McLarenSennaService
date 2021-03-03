@@ -37,6 +37,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Autowired
     private ICategoryService categoryService;
 
+    @Override
+    public Product getByProductKey(String productKey) {
+        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("product_key",productKey);
+        return this.getOne(queryWrapper);
+    }
+
     @Transactional
     @Override
     public DataResponse<ProductDTO> create(ProductBody body) {
@@ -44,7 +51,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         if (category == null) {
             throw new ApiException(ErrorCode.CATEGORY_NOT_FOUND);
         }
-        Product product = ProductConverter.INSTANCE.toProductEntity(body);
+        Product product = ProductConverter.INSTANCE.toProduct(body);
         /* 默认节点类型直连设备(暂不开放设置) */
         product.setNodeType(1L);
         /* 默认设备秘钥方式(暂不开放设置) */

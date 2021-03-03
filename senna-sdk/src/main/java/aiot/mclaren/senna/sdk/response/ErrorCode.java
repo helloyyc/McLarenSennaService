@@ -20,9 +20,23 @@ public enum ErrorCode implements ResultCode {
     ACCOUNT_OR_PASSWORD_ERROR(10101, "账户或者密码错误"),
 
     /**
+     * 产品相关错误码
+     */
+    PRODUCT_NOT_FOUND(10200, "产品不存在"),
+    PRODUCT_NAME_EXISTS(10201, "产品名称已存在"),
+    PRODUCT_SECURE_MODE_NOT_SUPPORT(10202, "产品秘钥认证方式不支持"),
+
+
+    /**
+     * 设备相关错误码
+     */
+    DEVICE_NOT_FOUND(10400, "设备不存在"),
+    DEVICE_NAME_EXISTS(10401, "设备名称已存在"),
+
+    /**
      * 品类相关错误码
      */
-    CATEGORY_NOT_FOUND(10200, "指定品类不存在"),
+    CATEGORY_NOT_FOUND(10600, "指定品类不存在"),
     DATABASE_OPERATION_EXCEPTION(20100, "数据库操作异常")
     ;
 

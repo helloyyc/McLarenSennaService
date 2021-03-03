@@ -17,6 +17,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-02-06
  */
 public interface IProductService extends IService<Product> {
+
+    Product getByProductKey(String productKey);
+
     DataResponse<ProductDTO> create(ProductBody body);
 
     DataResponse<SimplePage<ProductDTO>> selectPage(ProductQuery query);

@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface ProductConverter {
     ProductConverter INSTANCE = Mappers.getMapper(ProductConverter.class);
 
-    Product toProductEntity(ProductBody body);
+    Product toProduct(ProductBody body);
 
     ProductDTO toProductDTO(Product product);
 

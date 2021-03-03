@@ -7,6 +7,7 @@
         <result column="id" property="id" />
         <result column="create_dt" property="createDt" />
         <result column="update_dt" property="updateDt" />
+        <result column="iot_id" property="iotId" />
         <result column="nick_name" property="nickName" />
         <result column="username" property="username" />
         <result column="password" property="password" />
@@ -14,11 +15,11 @@
         <result column="device_name" property="deviceName" />
         <result column="is_superuser" property="isSuperuser" />
         <result column="device_secret" property="deviceSecret" />
-        <result column="device_descrption" property="deviceDescrption" />
+        <result column="device_description" property="deviceDescription" />
         <result column="device_status" property="deviceStatus" />
         <result column="active_dt" property="activeDt" />
         <result column="online_dt" property="onlineDt" />
-        <result column="product_id" property="productId" />
+        <result column="product_key" property="productKey" />
         <result column="enable" property="enable" />
     </resultMap>
 
@@ -27,7 +28,7 @@
         id,
         create_dt,
         update_dt,
-        nick_name, username, password, salt, device_name, is_superuser, device_secret, device_descrption, device_status, active_dt, online_dt, product_id, enable
+        iot_id, nick_name, username, password, salt, device_name, is_superuser, device_secret, device_description, device_status, active_dt, online_dt, product_key, enable
     </sql>
 
 </mapper>

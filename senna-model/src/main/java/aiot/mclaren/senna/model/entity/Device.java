@@ -19,6 +19,14 @@ public class Device extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 设备ID全局唯一
+     */
+    private String iotId;
+
+    /**
+     * 设备别名
+     */
     private String nickName;
 
     /**
@@ -37,7 +45,7 @@ public class Device extends BaseEntity {
     private String salt;
 
     /**
-     * 设备名
+     * 设备名,产品唯一
      */
     private String deviceName;
 
@@ -54,12 +62,12 @@ public class Device extends BaseEntity {
     /**
      * 设备描述
      */
-    private String deviceDescrption;
+    private String deviceDescription;
 
     /**
      * 设备状态
      */
-    private Long deviceStatus;
+    private Integer deviceStatus;
 
     /**
      * 激活时间
@@ -74,7 +82,7 @@ public class Device extends BaseEntity {
     /**
      * 产品ID
      */
-    private Long productId;
+    private String productKey;
 
     /**
      * 启用状态
