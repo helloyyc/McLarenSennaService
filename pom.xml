@@ -20,6 +20,7 @@
     <name>senna</name>
     <description>dms project for aiot system</description>
     <properties>
+        <skipTests>true</skipTests>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <hutool.version>5.5.7</hutool.version>

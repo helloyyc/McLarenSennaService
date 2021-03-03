@@ -129,6 +129,7 @@
     </dependencies>
 
     <build>
+        <finalName>mclaren-senna</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

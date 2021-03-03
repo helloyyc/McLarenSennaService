@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: aiot-mclaren-senna-service
+  jackson:
+    default-property-inclusion: non_null
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+---
+# dev
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://mysql-internet-cn-east-2-91aba77060114087.rds.jdcloud.com:3306/mclaren_senna_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root_mclaren
+    password: mxOlZ&c92Cg
+  cloud:
+    consul:
+      host: 192.168.3.158
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}-${hostname:local-dev}
+        prefer-ip-address: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+---
+# test
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://mysql-internet-cn-east-2-91aba77060114087.rds.jdcloud.com:3306/mclaren_senna_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root_mclaren
+    password: mxOlZ&c92Cg
+  cloud:
+    consul:
+      host: 192.168.3.158
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}-${hostname:local-dev}
+        prefer-ip-address: true
