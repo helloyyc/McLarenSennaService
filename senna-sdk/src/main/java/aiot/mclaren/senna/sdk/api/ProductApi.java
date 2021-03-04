@@ -1,11 +1,10 @@
 package aiot.mclaren.senna.sdk.api;
 
 import aiot.mclaren.commons.response.DataResponse;
-import aiot.mclaren.commons.response.PageListResponse;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
 import aiot.mclaren.senna.sdk.request.ProductQuery;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -30,5 +29,5 @@ public interface ProductApi {
 
     @ApiOperation("产品列表")
     @GetMapping
-    DataResponse<SimplePage<ProductDTO>> selectPage(@Validated ProductQuery query);
+    DataResponse<PageList<ProductDTO>> listPage(@Validated ProductQuery query);
 }

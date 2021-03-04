@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ApiModel(description = "用户")
+@ApiModel("用户")
 public class UserDTO extends BaseDTO {
 
     private static final long serialVersionUID = 1L;

@@ -3,9 +3,8 @@ package aiot.mclaren.senna.host.mapstruct;
 import aiot.mclaren.senna.model.entity.Product;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -22,5 +21,5 @@ public interface ProductConverter {
 
     ProductDTO toProductDTO(Product product);
 
-    SimplePage<ProductDTO> toProductDTOPages(IPage<Product> page);
+    PageList<ProductDTO> toProductDTOPages(IPage<Product> page);
 }

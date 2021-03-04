@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @date 2021/2/6 17:09
  */
 @Data
-@ApiModel(description = "通用信息")
+@ApiModel("通用信息")
 public class BaseDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

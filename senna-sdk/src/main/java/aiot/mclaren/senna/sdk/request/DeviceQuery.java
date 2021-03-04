@@ -10,4 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DeviceQuery extends PageQuery {
+    String deviceName;
+    String nickName;
 }

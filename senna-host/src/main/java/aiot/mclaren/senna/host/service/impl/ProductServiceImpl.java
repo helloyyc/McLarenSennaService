@@ -13,9 +13,8 @@ import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
 import aiot.mclaren.senna.sdk.request.ProductQuery;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public Product getByProductKey(String productKey) {
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("product_key",productKey);
+        queryWrapper.eq("product_key", productKey);
         return this.getOne(queryWrapper);
     }
 
@@ -67,13 +66,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public DataResponse<SimplePage<ProductDTO>> selectPage(ProductQuery query) {
+    public DataResponse<PageList<ProductDTO>> queryPage(ProductQuery query) {
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(query.getProductName())) {
             queryWrapper.like("product_name", query.getProductName());
         }
-        IPage<Product> page = new Page<>(query.getPage(), query.getSize());
-        return DataResponse.success(ProductConverter.INSTANCE.toProductDTOPages(page(page, queryWrapper)));
+        return DataResponse.success(ProductConverter.INSTANCE
+            .toProductDTOPages(page(new Page<>(query.getCurrent(), query.getSize()), queryWrapper)));
     }
 
 }

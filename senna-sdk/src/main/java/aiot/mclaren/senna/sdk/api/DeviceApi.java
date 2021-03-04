@@ -4,7 +4,7 @@ import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -29,5 +29,5 @@ public interface DeviceApi {
 
     @ApiOperation("设备列表")
     @GetMapping
-    DataResponse<SimplePage<DeviceDTO>> selectPage(@Validated DeviceQuery query);
+    DataResponse<PageList<DeviceDTO>> listPage(@Validated DeviceQuery query);
 }

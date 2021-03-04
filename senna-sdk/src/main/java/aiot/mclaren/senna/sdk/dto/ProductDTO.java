@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ApiModel(description = "产品")
+@ApiModel("产品")
 public class ProductDTO extends BaseDTO {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty("产品名称")

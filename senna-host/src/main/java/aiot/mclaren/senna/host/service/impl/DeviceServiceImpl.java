@@ -15,17 +15,18 @@ import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author lsj
@@ -85,8 +86,16 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
     }
 
     @Override
-    public DataResponse<SimplePage<DeviceDTO>> selectPage(DeviceQuery query) {
-        return null;
+    public DataResponse<PageList<DeviceDTO>> queryPage(DeviceQuery query) {
+        QueryWrapper<Device> queryWrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(query.getDeviceName())) {
+            queryWrapper.like("device_name", query.getDeviceName());
+        }
+        if (!StringUtils.isEmpty(query.getNickName())) {
+            queryWrapper.like("nick_name", query.getNickName());
+        }
+        return DataResponse.success(DeviceConverter.INSTANCE
+            .toDeviceDTOPages(page(query.toPage(), queryWrapper)));
     }
 
     @Override

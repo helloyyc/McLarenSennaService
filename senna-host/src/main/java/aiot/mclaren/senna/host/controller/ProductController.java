@@ -2,14 +2,12 @@ package aiot.mclaren.senna.host.controller;
 
 
 import aiot.mclaren.commons.response.DataResponse;
-import aiot.mclaren.commons.response.PageListResponse;
 import aiot.mclaren.senna.host.service.IProductService;
-import aiot.mclaren.senna.model.entity.Product;
 import aiot.mclaren.senna.sdk.api.ProductApi;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
 import aiot.mclaren.senna.sdk.request.ProductQuery;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -34,8 +32,8 @@ public class ProductController implements ProductApi {
     }
 
     @Override
-    public DataResponse<SimplePage<ProductDTO>> selectPage(ProductQuery query) {
-        return productService.selectPage(query);
+    public DataResponse<PageList<ProductDTO>> listPage(ProductQuery query) {
+        return productService.queryPage(query);
     }
 }
 

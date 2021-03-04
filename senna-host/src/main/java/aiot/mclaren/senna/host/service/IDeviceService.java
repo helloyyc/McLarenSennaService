@@ -5,7 +5,7 @@ import aiot.mclaren.senna.model.entity.Device;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
-import aiot.mclaren.senna.sdk.response.SimplePage;
+import aiot.mclaren.senna.sdk.response.PageList;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -20,7 +20,7 @@ public interface IDeviceService extends IService<Device> {
 
     DataResponse<DeviceDTO> create(DeviceBody body);
 
-    DataResponse<SimplePage<DeviceDTO>> selectPage(DeviceQuery query);
+    DataResponse<PageList<DeviceDTO>> queryPage(DeviceQuery query);
 
     Device getByDeviceNameAndProductKey(String deviceName, String productKey);
 
