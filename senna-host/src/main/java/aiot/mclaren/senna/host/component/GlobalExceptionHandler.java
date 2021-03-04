@@ -26,6 +26,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public DataResponse<Object> handleException(Exception e) {
         log.warn(ExceptionUtil.exceptionDetailInfo(e));
+        e.printStackTrace();
         return DataResponse.error(e);
     }
 

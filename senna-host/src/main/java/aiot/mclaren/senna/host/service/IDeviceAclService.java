@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDeviceAclService extends IService<DeviceAcl> {
 
+    boolean initDeviceDefaultAcl(String productKey, String deviceName, String username);
+
 }

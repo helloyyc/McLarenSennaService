@@ -1,6 +1,5 @@
-package aiot.mclaren.senna.model.type;
+package aiot.mclaren.senna.model.enums;
 
-import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -8,7 +7,7 @@ import lombok.Getter;
  * @date 2021/3/3 21:34
  */
 @Getter
-public enum DeviceStatus {
+public enum DeviceStatusEnum {
     /**
      * 已禁用
      */
@@ -29,7 +28,7 @@ public enum DeviceStatus {
     private final int id;
     private final String name;
 
-    DeviceStatus(int id, String name) {
+    DeviceStatusEnum(int id, String name) {
         this.id = id;
         this.name = name;
     }

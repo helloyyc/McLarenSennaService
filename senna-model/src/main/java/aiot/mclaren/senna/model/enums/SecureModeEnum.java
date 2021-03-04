@@ -1,4 +1,4 @@
-package aiot.mclaren.senna.model.type;
+package aiot.mclaren.senna.model.enums;
 
 import lombok.Getter;
 
@@ -7,7 +7,7 @@ import lombok.Getter;
  * @date 2021/1/29 16:34
  */
 @Getter
-public enum SecureMode {
+public enum SecureModeEnum {
 
     /**
      * 一机一密
@@ -23,7 +23,7 @@ public enum SecureMode {
     private final int id;
     private final String modeName;
 
-    SecureMode(int id, String modeName) {
+    SecureModeEnum(int id, String modeName) {
         this.id = id;
         this.modeName = modeName;
     }

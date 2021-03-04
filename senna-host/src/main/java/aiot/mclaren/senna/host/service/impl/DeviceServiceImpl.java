@@ -4,13 +4,14 @@ import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.common.SecurityUtils;
 import aiot.mclaren.senna.host.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.DeviceConverter;
+import aiot.mclaren.senna.host.service.IDeviceAclService;
 import aiot.mclaren.senna.host.service.IProductService;
 import aiot.mclaren.senna.model.entity.Device;
 import aiot.mclaren.senna.host.mapper.DeviceMapper;
 import aiot.mclaren.senna.host.service.IDeviceService;
 import aiot.mclaren.senna.model.entity.Product;
-import aiot.mclaren.senna.model.type.DeviceStatus;
-import aiot.mclaren.senna.model.type.SecureMode;
+import aiot.mclaren.senna.model.enums.DeviceStatusEnum;
+import aiot.mclaren.senna.model.enums.SecureModeEnum;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
@@ -22,6 +23,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 /**
@@ -37,6 +39,10 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private IDeviceAclService deviceAclService;
+
+    @Transactional
     @Override
     public DataResponse<DeviceDTO> create(DeviceBody body) {
         Product product = productService.getByProductKey(body.getProductKey());
@@ -66,9 +72,9 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
 
         /* 根据产品安全模式获取不同的加密秘钥 */
         String hmacKey;
-        if (SecureMode.ONE_PRODUCT_ONE_SECRET.getId() == product.getSecureMode()) {
+        if (SecureModeEnum.ONE_PRODUCT_ONE_SECRET.getId() == product.getSecureMode()) {
             hmacKey = product.getProductSecret();
-        } else if (SecureMode.ONE_MACHINE_ONE_SECRET.getId() == product.getSecureMode()) {
+        } else if (SecureModeEnum.ONE_MACHINE_ONE_SECRET.getId() == product.getSecureMode()) {
             hmacKey = deviceSecret;
         } else {
             throw new ApiException(ErrorCode.PRODUCT_SECURE_MODE_NOT_SUPPORT);
@@ -77,11 +83,17 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         device.setSalt(salt);
         device.setPassword(SecureUtil.sha256(SecureUtil.hmacSha1(hmacKey).digestHex(deviceName) + salt));
         /* 默认未激活 */
-        device.setDeviceStatus(DeviceStatus.UNACTIVE.getId());
+        device.setDeviceStatus(DeviceStatusEnum.UNACTIVE.getId());
         boolean save = this.save(device);
         if (!save) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
+
+        save = deviceAclService.initDeviceDefaultAcl(productKey, deviceName, device.getUsername());
+        if (!save) {
+            throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
+        }
+
         return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTO(device));
     }
 
