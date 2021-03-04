@@ -30,4 +30,8 @@ public interface DeviceApi {
     @ApiOperation("设备列表")
     @GetMapping
     DataResponse<PageList<DeviceDTO>> listPage(@Validated DeviceQuery query);
+
+    @ApiOperation("快速签名")
+    @GetMapping("quick_sign")
+    DataResponse<String> quickSign(String deviceName, String secret);
 }
