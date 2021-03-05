@@ -1,21 +1,24 @@
 package aiot.mclaren.senna.host.controller;
 
-
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.service.IDeviceService;
+import aiot.mclaren.senna.model.enums.DeviceEnableEnum;
 import aiot.mclaren.senna.sdk.api.DeviceApi;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
+import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
 import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.crypto.SecureUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author lsj
@@ -43,13 +46,13 @@ public class DeviceController implements DeviceApi {
     }
 
     @Override
-    public DataResponse<Boolean> enableDevice() {
-        return null;
+    public DataResponse<Boolean> enableDevice(DeviceEnableBody body) {
+        return deviceService.updateEnableStatus(body, DeviceEnableEnum.ENABLE);
     }
 
     @Override
-    public DataResponse<Boolean> disableDevice() {
-        return null;
+    public DataResponse<Boolean> disableDevice(DeviceEnableBody body) {
+        return deviceService.updateEnableStatus(body, DeviceEnableEnum.DISABLE);
     }
 }
 

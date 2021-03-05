@@ -72,7 +72,7 @@ public class DeviceAclServiceImpl extends ServiceImpl<DeviceAclMapper, DeviceAcl
     }
 
     @Override
-    public DataResponse<Boolean> delete(String id) {
+    public DataResponse<Boolean> delete(Long id) {
         return DataResponse.success(this.removeById(id));
     }
 

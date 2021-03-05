@@ -3,6 +3,7 @@ package aiot.mclaren.senna.sdk.api;
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
+import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
 import aiot.mclaren.senna.sdk.response.PageList;
 import io.swagger.annotations.Api;
@@ -34,9 +35,9 @@ public interface DeviceApi {
 
     @ApiOperation("启用设备")
     @PutMapping("enable_status/enable")
-    DataResponse<Boolean> enableDevice();
+    DataResponse<Boolean> enableDevice(@Validated @RequestBody DeviceEnableBody body);
 
     @ApiOperation("禁用设备")
     @PutMapping("enable_status/disable")
-    DataResponse<Boolean> disableDevice();
+    DataResponse<Boolean> disableDevice(@Validated @RequestBody DeviceEnableBody body);
 }

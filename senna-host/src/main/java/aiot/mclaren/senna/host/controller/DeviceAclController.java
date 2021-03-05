@@ -36,7 +36,7 @@ public class DeviceAclController implements DeviceAclApi {
     }
 
     @Override
-    public DataResponse<Boolean> delete(String id) {
+    public DataResponse<Boolean> delete(Long id) {
         return deviceAclService.delete(id);
     }
 }

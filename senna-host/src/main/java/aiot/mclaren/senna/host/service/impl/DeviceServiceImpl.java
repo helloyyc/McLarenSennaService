@@ -15,12 +15,15 @@ import aiot.mclaren.senna.model.enums.DeviceStatusEnum;
 import aiot.mclaren.senna.model.enums.SecureModeEnum;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
+import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
 import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -108,8 +111,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         if (!StringUtils.isEmpty(query.getNickName())) {
             queryWrapper.like("nick_name", query.getNickName());
         }
-        return DataResponse.success(DeviceConverter.INSTANCE
-            .toDeviceDTOPages(page(query.toPage(), queryWrapper)));
+        return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTOPages(page(query.toPage(), queryWrapper)));
     }
 
     @Override
@@ -117,6 +119,14 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         QueryWrapper<Device> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("device_name", deviceName).eq("product_key", productKey);
         return this.getOne(queryWrapper);
+    }
+
+    @Override
+    public DataResponse<Boolean> updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable) {
+        UpdateWrapper<Device> wrapper = new UpdateWrapper<>();
+        wrapper.eq("product_key", body.getProductKey()).eq("device_name", body.getDeviceName())
+            .set("enable", enable.getCode());
+        return DataResponse.success(update(wrapper));
     }
 
 }

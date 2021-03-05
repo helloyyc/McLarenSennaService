@@ -28,5 +28,5 @@ public interface DeviceAclApi {
 
     @ApiOperation("删除ACL")
     @DeleteMapping("{id}")
-    DataResponse<Boolean> delete(@PathVariable String id);
+    DataResponse<Boolean> delete(@PathVariable Long id);
 }

@@ -22,6 +22,6 @@ public interface IDeviceAclService extends IService<DeviceAcl> {
 
     DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body);
 
-    DataResponse<Boolean> delete(String id);
+    DataResponse<Boolean> delete(Long id);
 
 }
