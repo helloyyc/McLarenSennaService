@@ -40,4 +40,8 @@ public interface DeviceApi {
     @ApiOperation("禁用设备")
     @PutMapping("enable_status/disable")
     DataResponse<Boolean> disableDevice(@Validated @RequestBody DeviceEnableBody body);
+
+    @ApiOperation("删除设备")
+    @DeleteMapping("{id}")
+    DataResponse<Boolean> delete(@PathVariable Long id);
 }

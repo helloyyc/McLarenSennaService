@@ -54,5 +54,10 @@ public class DeviceController implements DeviceApi {
     public DataResponse<Boolean> disableDevice(DeviceEnableBody body) {
         return deviceService.updateEnableStatus(body, DeviceEnableEnum.DISABLE);
     }
+
+    @Override
+    public DataResponse<Boolean> delete(Long id) {
+        return deviceService.deleteById(id);
+    }
 }
 

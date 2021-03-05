@@ -129,4 +129,9 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         return DataResponse.success(update(wrapper));
     }
 
+    @Override
+    public DataResponse<Boolean> deleteById(Long id) {
+        return DataResponse.success(removeById(id));
+    }
+
 }
