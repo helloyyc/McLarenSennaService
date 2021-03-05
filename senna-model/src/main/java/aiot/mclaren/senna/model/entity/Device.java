@@ -89,5 +89,15 @@ public class Device extends BaseEntity {
      */
     private Integer enable;
 
+    /**
+     * IP 地址
+     */
+    private String ipAddress;
+
+    /**
+     * 固件版本
+     */
+    private String firmwareVersion;
+
 
 }

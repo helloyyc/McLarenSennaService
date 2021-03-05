@@ -45,4 +45,10 @@ public class DeviceDTO extends BaseDTO {
 
     @ApiModelProperty("最后上线时间")
     private LocalDateTime onlineDt;
+
+    @ApiModelProperty("IP地址")
+    private String ipAddress;
+
+    @ApiModelProperty("固件版本")
+    private String firmwareVersion;
 }
