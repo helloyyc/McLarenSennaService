@@ -16,7 +16,7 @@
     </parent>
     <groupId>aiot.mclaren</groupId>
     <artifactId>senna</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>senna</name>
     <description>dms project for aiot system</description>
     <properties>
