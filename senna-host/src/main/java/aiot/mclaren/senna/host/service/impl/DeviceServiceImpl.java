@@ -89,7 +89,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
 
-        save = deviceAclService.initDeviceDefaultAcl(productKey, deviceName, device.getUsername());
+        save = deviceAclService.initNewDeviceDefaultAcl(productKey, deviceName, device.getUsername());
         if (!save) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
