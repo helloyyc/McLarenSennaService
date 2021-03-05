@@ -29,6 +29,10 @@ public interface DeviceApi {
     @GetMapping
     DataResponse<PageList<DeviceDTO>> listPage(@Validated DeviceQuery query);
 
+    @ApiOperation("设备详情")
+    @GetMapping("{id}")
+    DataResponse<DeviceDTO> getById(@PathVariable Long id);
+
     @ApiOperation("快速签名")
     @GetMapping("quick_sign")
     DataResponse<String> quickSign(String deviceName, String secret);
@@ -43,5 +47,5 @@ public interface DeviceApi {
 
     @ApiOperation("删除设备")
     @DeleteMapping("{id}")
-    DataResponse<Boolean> delete(@PathVariable Long id);
+    DataResponse<Boolean> deleteById(@PathVariable Long id);
 }

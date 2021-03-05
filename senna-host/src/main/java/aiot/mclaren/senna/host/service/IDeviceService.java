@@ -28,6 +28,4 @@ public interface IDeviceService extends IService<Device> {
 
     DataResponse<Boolean> updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable);
 
-    DataResponse<Boolean> deleteById(Long id);
-
 }

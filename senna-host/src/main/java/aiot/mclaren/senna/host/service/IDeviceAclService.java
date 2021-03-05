@@ -21,7 +21,4 @@ public interface IDeviceAclService extends IService<DeviceAcl> {
     boolean initSysDefaultAcl();
 
     DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body);
-
-    DataResponse<Boolean> delete(Long id);
-
 }

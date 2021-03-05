@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @author lsj
  * @date 2021/3/5 11:02
  */
-@Api(tags = "设备主题ACL相关")
+@Api(tags = "设备主题ACL")
 @FeignClient(name = "${spring.application.name}", contextId = "device_acl")
 @RequestMapping("device_acls")
 public interface DeviceAclApi {
@@ -28,5 +28,5 @@ public interface DeviceAclApi {
 
     @ApiOperation("删除ACL")
     @DeleteMapping("{id}")
-    DataResponse<Boolean> delete(@PathVariable Long id);
+    DataResponse<Boolean> deleteById(@PathVariable Long id);
 }

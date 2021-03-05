@@ -2,6 +2,7 @@ package aiot.mclaren.senna.host.controller;
 
 
 import aiot.mclaren.commons.response.DataResponse;
+import aiot.mclaren.senna.host.mapstruct.ProductConverter;
 import aiot.mclaren.senna.host.service.IProductService;
 import aiot.mclaren.senna.sdk.api.ProductApi;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
@@ -29,6 +30,11 @@ public class ProductController implements ProductApi {
     @Override
     public DataResponse<ProductDTO> create(ProductBody body) {
         return productService.create(body);
+    }
+
+    @Override
+    public DataResponse<ProductDTO> getById(Long id) {
+        return DataResponse.success(ProductConverter.INSTANCE.toProductDTO(productService.getById(id)));
     }
 
     @Override

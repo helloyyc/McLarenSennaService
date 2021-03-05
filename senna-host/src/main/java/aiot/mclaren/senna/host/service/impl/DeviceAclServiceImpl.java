@@ -71,9 +71,4 @@ public class DeviceAclServiceImpl extends ServiceImpl<DeviceAclMapper, DeviceAcl
         return DataResponse.success(DeviceAclConverter.INSTANCE.toDeviceAclDTO(deviceAcl));
     }
 
-    @Override
-    public DataResponse<Boolean> delete(Long id) {
-        return DataResponse.success(this.removeById(id));
-    }
-
 }

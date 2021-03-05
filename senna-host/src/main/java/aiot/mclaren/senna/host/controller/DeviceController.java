@@ -1,6 +1,7 @@
 package aiot.mclaren.senna.host.controller;
 
 import aiot.mclaren.commons.response.DataResponse;
+import aiot.mclaren.senna.host.mapstruct.DeviceConverter;
 import aiot.mclaren.senna.host.service.IDeviceService;
 import aiot.mclaren.senna.model.enums.DeviceEnableEnum;
 import aiot.mclaren.senna.sdk.api.DeviceApi;
@@ -41,6 +42,11 @@ public class DeviceController implements DeviceApi {
     }
 
     @Override
+    public DataResponse<DeviceDTO> getById(Long id) {
+        return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTO(deviceService.getById(id)));
+    }
+
+    @Override
     public DataResponse<String> quickSign(String deviceName, String secret) {
         return DataResponse.success(SecureUtil.hmacSha1(secret).digestHex(deviceName));
     }
@@ -56,8 +62,8 @@ public class DeviceController implements DeviceApi {
     }
 
     @Override
-    public DataResponse<Boolean> delete(Long id) {
-        return deviceService.deleteById(id);
+    public DataResponse<Boolean> deleteById(Long id) {
+        return DataResponse.success(deviceService.removeById(id));
     }
 }
 
