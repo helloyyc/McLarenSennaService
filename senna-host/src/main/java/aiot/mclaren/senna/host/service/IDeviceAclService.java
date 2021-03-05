@@ -1,6 +1,9 @@
 package aiot.mclaren.senna.host.service;
 
+import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
+import aiot.mclaren.senna.sdk.dto.DeviceAclDTO;
+import aiot.mclaren.senna.sdk.request.DeviceAclBody;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -16,5 +19,9 @@ public interface IDeviceAclService extends IService<DeviceAcl> {
     boolean initNewDeviceDefaultAcl(String productKey, String deviceName, String username);
 
     boolean initSysDefaultAcl();
+
+    DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body);
+
+    DataResponse<Boolean> delete(String id);
 
 }

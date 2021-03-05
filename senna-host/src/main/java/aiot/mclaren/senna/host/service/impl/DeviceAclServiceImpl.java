@@ -1,10 +1,16 @@
 package aiot.mclaren.senna.host.service.impl;
 
+import aiot.mclaren.commons.response.DataResponse;
+import aiot.mclaren.senna.host.exception.ApiException;
+import aiot.mclaren.senna.host.mapstruct.DeviceAclConverter;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
 import aiot.mclaren.senna.host.mapper.DeviceAclMapper;
 import aiot.mclaren.senna.host.service.IDeviceAclService;
 import aiot.mclaren.senna.model.enums.DeviceDefaultAclEnum;
 import aiot.mclaren.senna.model.enums.SystemDefaultAclEnum;
+import aiot.mclaren.senna.sdk.dto.DeviceAclDTO;
+import aiot.mclaren.senna.sdk.request.DeviceAclBody;
+import aiot.mclaren.senna.sdk.response.ErrorCode;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +59,21 @@ public class DeviceAclServiceImpl extends ServiceImpl<DeviceAclMapper, DeviceAcl
             sysAcls.add(deviceAcl);
         }
         return saveBatch(sysAcls);
+    }
+
+    @Override
+    public DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body) {
+        DeviceAcl deviceAcl = DeviceAclConverter.INSTANCE.toDeviceAcl(body);
+        boolean saveOrUpdate = this.saveOrUpdate(deviceAcl);
+        if (!saveOrUpdate) {
+            throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
+        }
+        return DataResponse.success(DeviceAclConverter.INSTANCE.toDeviceAclDTO(deviceAcl));
+    }
+
+    @Override
+    public DataResponse<Boolean> delete(String id) {
+        return DataResponse.success(this.removeById(id));
     }
 
 }

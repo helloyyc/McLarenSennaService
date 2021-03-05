@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lsj
  * @date 2021/2/6 16:45
  */
-@Api(tags = "设备")
+@Api(tags = "设备相关")
 @FeignClient(name = "${spring.application.name}", contextId = "device")
 @RequestMapping("devices")
 public interface DeviceApi {
