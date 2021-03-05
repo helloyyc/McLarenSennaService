@@ -4,31 +4,24 @@ import lombok.Getter;
 
 /**
  * @author lsj
- * @date 2021/3/3 21:34
+ * @date 2021/3/5 14:12
  */
 @Getter
-public enum DeviceStatusEnum {
+public enum DeviceEnableEnum {
     /**
-     * 未激活
+     * 已禁用
      */
-    UNACTIVE(2, "UNACTIVE"),
+    DISABLE(0, "DISABLE"),
 
     /**
-     * 在线
+     * 已启用
      */
-    ONLINE(1, "ONLINE"),
-
-    /**
-     * 离线
-     */
-    OFFLINE(0, "OFFLINE"),
-
+    ENABLE(1, "ENABLE"),
     ;
-
     private final int code;
     private final String name;
 
-    DeviceStatusEnum(int code, String name) {
+    DeviceEnableEnum(int code, String name) {
         this.code = code;
         this.name = name;
     }

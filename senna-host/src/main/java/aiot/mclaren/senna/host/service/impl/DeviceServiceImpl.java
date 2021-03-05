@@ -10,6 +10,7 @@ import aiot.mclaren.senna.model.entity.Device;
 import aiot.mclaren.senna.host.mapper.DeviceMapper;
 import aiot.mclaren.senna.host.service.IDeviceService;
 import aiot.mclaren.senna.model.entity.Product;
+import aiot.mclaren.senna.model.enums.DeviceEnableEnum;
 import aiot.mclaren.senna.model.enums.DeviceStatusEnum;
 import aiot.mclaren.senna.model.enums.SecureModeEnum;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
@@ -83,7 +84,8 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         device.setSalt(salt);
         device.setPassword(SecureUtil.sha256(SecureUtil.hmacSha1(hmacKey).digestHex(deviceName) + salt));
         /* 默认未激活 */
-        device.setDeviceStatus(DeviceStatusEnum.UNACTIVE.getId());
+        device.setDeviceStatus(DeviceStatusEnum.UNACTIVE.getCode());
+        device.setEnable(DeviceEnableEnum.ENABLE.getCode());
         boolean save = this.save(device);
         if (!save) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);

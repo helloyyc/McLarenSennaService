@@ -31,6 +31,12 @@ public class DeviceDTO extends BaseDTO {
     @ApiModelProperty("备注名称")
     private String nickName;
 
+    @ApiModelProperty("设备状态 0: 离线 1:  在线 2: 未激活")
+    private Integer deviceStatus;
+
+    @ApiModelProperty("启用状态 0: 未启用, 1: 已启用")
+    private Integer enable;
+
     @ApiModelProperty("设备描述")
     private String deviceDescription;
 

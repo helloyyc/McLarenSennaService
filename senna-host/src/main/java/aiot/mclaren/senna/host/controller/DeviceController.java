@@ -41,5 +41,15 @@ public class DeviceController implements DeviceApi {
     public DataResponse<String> quickSign(String deviceName, String secret) {
         return DataResponse.success(SecureUtil.hmacSha1(secret).digestHex(deviceName));
     }
+
+    @Override
+    public DataResponse<Boolean> enableDevice() {
+        return null;
+    }
+
+    @Override
+    public DataResponse<Boolean> disableDevice() {
+        return null;
+    }
 }
 

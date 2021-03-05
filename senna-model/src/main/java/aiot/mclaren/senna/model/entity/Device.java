@@ -50,7 +50,7 @@ public class Device extends BaseEntity {
     private String deviceName;
 
     /**
-     * 是否超级用户 1是 ,0 否
+     * 是否超级用户 1: 是, 0: 否
      */
     private Boolean isSuperuser;
 
@@ -65,7 +65,7 @@ public class Device extends BaseEntity {
     private String deviceDescription;
 
     /**
-     * 设备状态
+     * 设备状态 0: 离线 1:  在线 2: 未激活
      */
     private Integer deviceStatus;
 
@@ -80,12 +80,12 @@ public class Device extends BaseEntity {
     private LocalDateTime onlineDt;
 
     /**
-     * 产品ID
+     * 产品KEY
      */
     private String productKey;
 
     /**
-     * 启用状态
+     * 启用状态 0: 未启用, 1: 已启用
      */
     private Integer enable;
 
