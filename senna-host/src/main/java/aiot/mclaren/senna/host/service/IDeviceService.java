@@ -7,6 +7,7 @@ import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
+import aiot.mclaren.senna.sdk.request.DeviceStatusBody;
 import aiot.mclaren.senna.sdk.response.PageList;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -27,5 +28,7 @@ public interface IDeviceService extends IService<Device> {
     Device getByDeviceNameAndProductKey(String deviceName, String productKey);
 
     DataResponse<Boolean> updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable);
+
+    DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body);
 
 }

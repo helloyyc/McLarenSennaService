@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021/2/6 16:45
  */
 @Api(tags = "产品")
-@FeignClient(name = "${spring.application.name}", contextId = "product")
+@FeignClient(name = "aiot-mclaren-senna-service", contextId = "product")
 @RequestMapping("products")
 public interface ProductApi {
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021/3/5 11:02
  */
 @Api(tags = "设备主题ACL")
-@FeignClient(name = "${spring.application.name}", contextId = "device_acl")
+@FeignClient(name = "aiot-mclaren-senna-service", contextId = "device-acl")
 @RequestMapping("device_acls")
 public interface DeviceAclApi {
 

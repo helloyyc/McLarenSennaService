@@ -17,8 +17,11 @@ import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
+import aiot.mclaren.senna.sdk.request.DeviceStatusBody;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
 import aiot.mclaren.senna.sdk.response.PageList;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -29,6 +32,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -127,6 +133,23 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         wrapper.eq("product_key", body.getProductKey()).eq("device_name", body.getDeviceName())
             .set("enable", enable.getCode());
         return DataResponse.success(update(wrapper));
+    }
+
+    @Override
+    public DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body) {
+        Device device =
+            this.getByDeviceNameAndProductKey(body.getDeviceName(), body.getProductKey());
+        if (device == null) {
+            throw new ApiException(ErrorCode.DEVICE_NOT_FOUND);
+        }
+
+        if (device.getActiveDt() == null) {
+            device.setActiveDt(LocalDateTimeUtil.of(body.getLastTime()));
+        }
+        device.setDeviceStatus(DeviceStatusEnum.valueOf(body.getStatus()).getCode());
+        device.setIpAddress(body.getIpAddress());
+        device.setOnlineDt(LocalDateTimeUtil.of(body.getLastTime()));
+        return DataResponse.success(this.updateById(device));
     }
 
 }

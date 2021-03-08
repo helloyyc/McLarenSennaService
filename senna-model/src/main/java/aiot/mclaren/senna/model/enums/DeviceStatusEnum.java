@@ -32,4 +32,15 @@ public enum DeviceStatusEnum {
         this.code = code;
         this.name = name;
     }
+
+
+    public static DeviceStatusEnum valueOf(int code) {
+        DeviceStatusEnum[] values = values();
+        for (DeviceStatusEnum value : values) {
+            if (code == value.getCode()) {
+                return value;
+            }
+        }
+        throw new RuntimeException("can't value of code: " + code);
+    }
 }

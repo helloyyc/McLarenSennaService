@@ -5,6 +5,7 @@ import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
+import aiot.mclaren.senna.sdk.request.DeviceStatusBody;
 import aiot.mclaren.senna.sdk.response.PageList;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021/2/6 16:45
  */
 @Api(tags = "设备相关")
-@FeignClient(name = "${spring.application.name}", contextId = "device")
+@FeignClient(name = "aiot-mclaren-senna-service", contextId = "device")
 @RequestMapping("devices")
 public interface DeviceApi {
 
@@ -35,7 +36,7 @@ public interface DeviceApi {
 
     @ApiOperation("快速签名")
     @GetMapping("quick_sign")
-    DataResponse<String> quickSign(String deviceName, String secret);
+    DataResponse<String> quickSign(@RequestParam String deviceName, @RequestParam String secret);
 
     @ApiOperation("启用设备")
     @PutMapping("enable_status/enable")
@@ -48,4 +49,8 @@ public interface DeviceApi {
     @ApiOperation("删除设备")
     @DeleteMapping("{id}")
     DataResponse<Boolean> deleteById(@PathVariable Long id);
+
+    @ApiOperation("更新设备状态")
+    @PostMapping("status")
+    DataResponse<Boolean> updateDeviceStatus(@Validated @RequestBody DeviceStatusBody body);
 }

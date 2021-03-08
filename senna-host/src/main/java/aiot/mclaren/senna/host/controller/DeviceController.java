@@ -9,6 +9,7 @@ import aiot.mclaren.senna.sdk.dto.DeviceDTO;
 import aiot.mclaren.senna.sdk.request.DeviceBody;
 import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
 import aiot.mclaren.senna.sdk.request.DeviceQuery;
+import aiot.mclaren.senna.sdk.request.DeviceStatusBody;
 import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.crypto.SecureUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,11 @@ public class DeviceController implements DeviceApi {
     @Override
     public DataResponse<Boolean> deleteById(Long id) {
         return DataResponse.success(deviceService.removeById(id));
+    }
+
+    @Override
+    public DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body) {
+        return deviceService.updateDeviceStatus(body);
     }
 }
 

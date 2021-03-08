@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Api(tags = "用户管理")
 @RequestMapping("users")
-@FeignClient(name = "${spring.application.name}", contextId = "user")
+@FeignClient(name = "aiot-mclaren-senna-service", contextId = "user")
 public interface UserApi {
 
 

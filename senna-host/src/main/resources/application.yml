@@ -31,8 +31,11 @@ spring:
       host: 192.168.3.158
       port: 8500
       discovery:
-        instance-id: ${spring.application.name}-${hostname:local-dev}
+        instance-id: ${spring.application.name}
         prefer-ip-address: true
+        include-hostname-in-instance-id: true
+        ip-address: 192.168.3.93
+
 
 mybatis-plus:
   configuration:
@@ -50,5 +53,5 @@ spring:
       host: 192.168.3.158
       port: 8500
       discovery:
-        instance-id: ${spring.application.name}-${hostname:local-dev}
+        instance-id: ${spring.application.name}-${hostname:test}
         prefer-ip-address: true
