@@ -2,7 +2,7 @@ package aiot.mclaren.senna.host.service.impl;
 
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.common.SecurityUtils;
-import aiot.mclaren.senna.host.exception.ApiException;
+import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.ProductConverter;
 import aiot.mclaren.senna.host.service.ICategoryService;
 import aiot.mclaren.senna.model.entity.Category;

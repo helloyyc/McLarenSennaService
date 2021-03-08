@@ -1,7 +1,7 @@
 package aiot.mclaren.senna.host.service.impl;
 
 import aiot.mclaren.commons.response.DataResponse;
-import aiot.mclaren.senna.host.exception.ApiException;
+import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.DeviceAclConverter;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
 import aiot.mclaren.senna.host.mapper.DeviceAclMapper;
@@ -10,11 +10,13 @@ import aiot.mclaren.senna.model.enums.DeviceDefaultAclEnum;
 import aiot.mclaren.senna.model.enums.SystemDefaultAclEnum;
 import aiot.mclaren.senna.sdk.dto.DeviceAclDTO;
 import aiot.mclaren.senna.sdk.request.DeviceAclBody;
+import aiot.mclaren.senna.sdk.request.DeviceDefaultAclBody;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,17 +31,25 @@ import java.util.List;
 public class DeviceAclServiceImpl extends ServiceImpl<DeviceAclMapper, DeviceAcl> implements IDeviceAclService {
 
     @Override
-    public boolean initNewDeviceDefaultAcl(String productKey, String deviceName, String username) {
+    public boolean initNewDeviceDefaultAcl(DeviceDefaultAclBody body) {
+        return this.initMultiNewDeviceDefaultAcl(Collections.singletonList(body));
+    }
+
+    @Override
+    public boolean initMultiNewDeviceDefaultAcl(List<DeviceDefaultAclBody> bodyList) {
         List<DeviceAcl> deviceAcls = new ArrayList<>();
         for (DeviceDefaultAclEnum aclEnum : DeviceDefaultAclEnum.values()) {
-            DeviceAcl deviceAcl = new DeviceAcl();
-            deviceAcl.setAllow(1);
-            deviceAcl.setIpaddr(null);
-            deviceAcl.setUsername(username);
-            deviceAcl.setClientid(null);
-            deviceAcl.setAccess(aclEnum.getAccess().getAccess());
-            deviceAcl.setTopic(String.format(aclEnum.getTopicFormat(), productKey, deviceName));
-            deviceAcls.add(deviceAcl);
+            for (DeviceDefaultAclBody body : bodyList) {
+                DeviceAcl deviceAcl = new DeviceAcl();
+                deviceAcl.setAllow(1);
+                deviceAcl.setIpaddr(null);
+                deviceAcl.setUsername(body.getUsername());
+                deviceAcl.setClientid(null);
+                deviceAcl.setAccess(aclEnum.getAccess().getAccess());
+                deviceAcl.setTopic(String.format(aclEnum.getTopicFormat(), body.getProductKey(), body.getDeviceName()));
+                deviceAcls.add(deviceAcl);
+            }
+
         }
         return saveBatch(deviceAcls);
     }

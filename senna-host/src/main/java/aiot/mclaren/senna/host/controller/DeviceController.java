@@ -6,10 +6,7 @@ import aiot.mclaren.senna.host.service.IDeviceService;
 import aiot.mclaren.senna.model.enums.DeviceEnableEnum;
 import aiot.mclaren.senna.sdk.api.DeviceApi;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
-import aiot.mclaren.senna.sdk.request.DeviceBody;
-import aiot.mclaren.senna.sdk.request.DeviceEnableBody;
-import aiot.mclaren.senna.sdk.request.DeviceQuery;
-import aiot.mclaren.senna.sdk.request.DeviceStatusBody;
+import aiot.mclaren.senna.sdk.request.*;
 import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.crypto.SecureUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -35,6 +34,11 @@ public class DeviceController implements DeviceApi {
     @Override
     public DataResponse<DeviceDTO> create(DeviceBody body) {
         return deviceService.create(body);
+    }
+
+    @Override
+    public DataResponse<List<DeviceDTO>> batchCreate(BatchDeviceBody body) {
+        return deviceService.batchCreate(body);
     }
 
     @Override

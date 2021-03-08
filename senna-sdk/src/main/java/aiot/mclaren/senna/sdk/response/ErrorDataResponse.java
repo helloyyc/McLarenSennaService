@@ -2,9 +2,11 @@ package aiot.mclaren.senna.sdk.response;
 
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.commons.response.ResultCode;
+import aiot.mclaren.senna.sdk.exception.ApiException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.validation.BindingResult;
@@ -25,20 +27,24 @@ import java.util.Map;
 public class ErrorDataResponse<T> extends DataResponse<T> {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty("错误信息")
-    private Map<String, String> errors;
+    private Map<String, Object> errors;
 
 
-    public ErrorDataResponse(ResultCode code, Map<String, String> errors) {
+    public ErrorDataResponse(ResultCode code, Map<String, Object> errors) {
         super(code);
         this.errors = errors;
     }
 
     public static <T> ErrorDataResponse<T> error(BindingResult bindingResult) {
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        Map<String, String> errors = new HashMap<>();
+        Map<String, Object> errors = new HashMap<>();
         for (FieldError fieldError : fieldErrors) {
             errors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return new ErrorDataResponse<>(ErrorCode.ARGUMENT_ILLEGAL, errors);
+    }
+
+    public static <T> ErrorDataResponse<T> error(ApiException e) {
+        return new ErrorDataResponse<>(e, e.getErrors());
     }
 }

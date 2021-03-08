@@ -1,9 +1,8 @@
 package aiot.mclaren.senna.host.component;
 
 import aiot.mclaren.commons.response.DataResponse;
-import aiot.mclaren.commons.response.ResultCode;
 import aiot.mclaren.commons.util.ExceptionUtil;
-import aiot.mclaren.senna.host.exception.ApiException;
+import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.sdk.response.ErrorDataResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -48,6 +47,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public DataResponse<Object> handleApiException(ApiException e) {
         log.warn(ExceptionUtil.exceptionDetailInfo(e));
-        return DataResponse.error((ResultCode)e);
+        return ErrorDataResponse.error(e);
     }
 }

@@ -4,7 +4,10 @@ import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
 import aiot.mclaren.senna.sdk.dto.DeviceAclDTO;
 import aiot.mclaren.senna.sdk.request.DeviceAclBody;
+import aiot.mclaren.senna.sdk.request.DeviceDefaultAclBody;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,9 +19,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDeviceAclService extends IService<DeviceAcl> {
 
-    boolean initNewDeviceDefaultAcl(String productKey, String deviceName, String username);
+    boolean initNewDeviceDefaultAcl(DeviceDefaultAclBody body);
+
+    boolean initMultiNewDeviceDefaultAcl(List<DeviceDefaultAclBody> bodyList);
 
     boolean initSysDefaultAcl();
 
     DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body);
+
+
 }

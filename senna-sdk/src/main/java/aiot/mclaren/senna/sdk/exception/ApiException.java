@@ -1,8 +1,10 @@
-package aiot.mclaren.senna.host.exception;
+package aiot.mclaren.senna.sdk.exception;
 
 import aiot.mclaren.commons.response.DefaultCode;
 import aiot.mclaren.commons.response.ResultCode;
 import lombok.Getter;
+
+import java.util.Map;
 
 /**
  * @author lsj
@@ -13,6 +15,7 @@ public class ApiException extends RuntimeException implements ResultCode {
     private static final long serialVersionUID = 1L;
     private int code;
     private String msg;
+    private Map<String, Object> errors;
 
     public ApiException(ResultCode code) {
         this.code = code.getCode();
@@ -22,6 +25,11 @@ public class ApiException extends RuntimeException implements ResultCode {
     public ApiException(ResultCode code, String msg) {
         this.code = code.getCode();
         this.msg = msg;
+    }
+
+    public ApiException(ResultCode code, Map<String, Object> errors) {
+        this(code);
+        this.errors = errors;
     }
 
     public ApiException(Throwable e) {
