@@ -24,6 +24,11 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     use-generated-keys: true
+broker:
+  address: http://192.168.3.158:21001
+  username: aidong
+  password: 2l0f2r01033:)1224
+
 ---
 # dev
 spring:
