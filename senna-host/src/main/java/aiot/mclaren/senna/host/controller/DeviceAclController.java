@@ -27,12 +27,12 @@ public class DeviceAclController implements DeviceAclApi {
 
     @Override
     public DataResponse<DeviceAclDTO> create(DeviceAclBody body) {
-        return deviceAclService.createOrUpdate(body);
+        return DataResponse.success(deviceAclService.createOrUpdate(body));
     }
 
     @Override
     public DataResponse<DeviceAclDTO> update(DeviceAclBody body) {
-        return deviceAclService.createOrUpdate(body);
+        return DataResponse.success(deviceAclService.createOrUpdate(body));
     }
 
     @Override
