@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service.impl;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.DeviceAclConverter;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
@@ -72,13 +71,13 @@ public class DeviceAclServiceImpl extends ServiceImpl<DeviceAclMapper, DeviceAcl
     }
 
     @Override
-    public DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body) {
+    public DeviceAclDTO createOrUpdate(DeviceAclBody body) {
         DeviceAcl deviceAcl = DeviceAclConverter.INSTANCE.toDeviceAcl(body);
         boolean saveOrUpdate = this.saveOrUpdate(deviceAcl);
         if (!saveOrUpdate) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
-        return DataResponse.success(DeviceAclConverter.INSTANCE.toDeviceAclDTO(deviceAcl));
+        return DeviceAclConverter.INSTANCE.toDeviceAclDTO(deviceAcl);
     }
 
 }

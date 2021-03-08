@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service.impl;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.common.SecurityUtils;
 import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.ProductConverter;
@@ -45,7 +44,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Transactional
     @Override
-    public DataResponse<ProductDTO> create(ProductBody body) {
+    public ProductDTO create(ProductBody body) {
         Category category = categoryService.getById(body.getCategoryId());
         if (category == null) {
             throw new ApiException(ErrorCode.CATEGORY_NOT_FOUND);
@@ -62,17 +61,17 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         if (!save) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
-        return DataResponse.success(ProductConverter.INSTANCE.toProductDTO(this.getById(product.getId())));
+        return ProductConverter.INSTANCE.toProductDTO(this.getById(product.getId()));
     }
 
     @Override
-    public DataResponse<PageList<ProductDTO>> queryPage(ProductQuery query) {
+    public PageList<ProductDTO> queryPage(ProductQuery query) {
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(query.getProductName())) {
             queryWrapper.like("product_name", query.getProductName());
         }
-        return DataResponse.success(ProductConverter.INSTANCE
-            .toProductDTOPages(page(new Page<>(query.getCurrent(), query.getSize()), queryWrapper)));
+        return ProductConverter.INSTANCE
+            .toProductDTOPages(page(new Page<>(query.getCurrent(), query.getSize()), queryWrapper));
     }
 
 }

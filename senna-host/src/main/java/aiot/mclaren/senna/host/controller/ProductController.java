@@ -29,7 +29,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public DataResponse<ProductDTO> create(ProductBody body) {
-        return productService.create(body);
+        return DataResponse.success(productService.create(body));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public DataResponse<PageList<ProductDTO>> listPage(ProductQuery query) {
-        return productService.queryPage(query);
+        return DataResponse.success(productService.queryPage(query));
     }
 }
 

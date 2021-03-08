@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service.impl;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.common.SecurityUtils;
 import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.DeviceConverter;
@@ -56,7 +55,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
 
     @Transactional
     @Override
-    public DataResponse<DeviceDTO> create(DeviceBody body) {
+    public DeviceDTO create(DeviceBody body) {
         Product product = productService.getByProductKey(body.getProductKey());
         /* 产品是否存在 */
         if (product == null) {
@@ -109,12 +108,12 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
 
-        return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTO(device));
+        return DeviceConverter.INSTANCE.toDeviceDTO(device);
     }
 
     @Transactional
     @Override
-    public DataResponse<List<DeviceDTO>> batchCreate(BatchDeviceBody body) {
+    public List<DeviceDTO> batchCreate(BatchDeviceBody body) {
         Product product = productService.getByProductKey(body.getProductKey());
         /* 产品是否存在 */
         if (product == null) {
@@ -180,11 +179,11 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         if (!save) {
             throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
         }
-        return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTOs(devices));
+        return DeviceConverter.INSTANCE.toDeviceDTOs(devices);
     }
 
     @Override
-    public DataResponse<PageList<DeviceDTO>> queryPage(DeviceQuery query) {
+    public PageList<DeviceDTO> queryPage(DeviceQuery query) {
         QueryWrapper<Device> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(query.getDeviceName())) {
             queryWrapper.like("device_name", query.getDeviceName());
@@ -192,7 +191,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         if (!StringUtils.isEmpty(query.getNickName())) {
             queryWrapper.like("nick_name", query.getNickName());
         }
-        return DataResponse.success(DeviceConverter.INSTANCE.toDeviceDTOPages(page(query.toPage(), queryWrapper)));
+        return DeviceConverter.INSTANCE.toDeviceDTOPages(page(query.toPage(), queryWrapper));
     }
 
     @Override
@@ -203,15 +202,15 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
     }
 
     @Override
-    public DataResponse<Boolean> updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable) {
+    public boolean updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable) {
         UpdateWrapper<Device> wrapper = new UpdateWrapper<>();
         wrapper.eq("product_key", body.getProductKey()).eq("device_name", body.getDeviceName())
             .set("enable", enable.getCode());
-        return DataResponse.success(update(wrapper));
+        return this.update(wrapper);
     }
 
     @Override
-    public DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body) {
+    public boolean updateDeviceStatus(DeviceStatusBody body) {
         Device device = this.getByDeviceNameAndProductKey(body.getDeviceName(), body.getProductKey());
         if (device == null) {
             throw new ApiException(ErrorCode.DEVICE_NOT_FOUND);
@@ -223,7 +222,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         device.setDeviceStatus(DeviceStatusEnum.valueOf(body.getStatus()).getCode());
         device.setIpAddress(body.getIpAddress());
         device.setOnlineDt(LocalDateTimeUtil.of(body.getLastTime()));
-        return DataResponse.success(this.updateById(device));
+        return this.updateById(device);
     }
 
 }

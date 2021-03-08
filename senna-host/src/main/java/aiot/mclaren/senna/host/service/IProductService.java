@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.Product;
 import aiot.mclaren.senna.sdk.dto.ProductDTO;
 import aiot.mclaren.senna.sdk.request.ProductBody;
@@ -20,7 +19,7 @@ public interface IProductService extends IService<Product> {
 
     Product getByProductKey(String productKey);
 
-    DataResponse<ProductDTO> create(ProductBody body);
+    ProductDTO create(ProductBody body);
 
-    DataResponse<PageList<ProductDTO>> queryPage(ProductQuery query);
+    PageList<ProductDTO> queryPage(ProductQuery query);
 }

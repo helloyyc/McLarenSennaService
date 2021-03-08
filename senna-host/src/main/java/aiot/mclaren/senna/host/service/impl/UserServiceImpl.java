@@ -1,7 +1,5 @@
 package aiot.mclaren.senna.host.service.impl;
 
-import aiot.mclaren.commons.response.DataResponse;
-import aiot.mclaren.commons.response.DefaultCode;
 import aiot.mclaren.senna.host.common.SecurityUtils;
 import aiot.mclaren.senna.sdk.exception.ApiException;
 import aiot.mclaren.senna.host.mapstruct.UserConverter;
@@ -22,7 +20,7 @@ import java.util.Optional;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author lsj
@@ -31,9 +29,8 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-
     @Override
-    public DataResponse<UserDTO> login(UserLoginBody body) {
+    public UserDTO login(UserLoginBody body) {
 
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.and(i -> {
@@ -47,11 +44,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         if (!passwordHash.equals(currentUser.getPassword())) {
             throw new ApiException(ErrorCode.ACCOUNT_OR_PASSWORD_ERROR);
         }
-        return DataResponse.success(UserConverter.INSTANCE.toUserDTO(currentUser));
+        return UserConverter.INSTANCE.toUserDTO(currentUser);
     }
 
     @Override
-    public DataResponse<Long> register(UserRegisterBody body) {
+    public Long register(UserRegisterBody body) {
         User user = UserConverter.INSTANCE.toUserEntity(body);
         // 昵称不存在使用用户名作为昵称
         if (StringUtils.isEmpty(user.getNickName())) {
@@ -60,6 +57,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setSalt(SecurityUtils.getSalt());
         user.setPassword(SecureUtil.sha256(body.getPassword() + user.getSalt()));
         user.setEnable(true);
-        return this.save(user) ? DataResponse.success(user.getId()) : new DataResponse<>(DefaultCode.UNKNOWN_ERROR);
+        boolean save = this.save(user);
+        if (!save) {
+            throw new ApiException(ErrorCode.DATABASE_OPERATION_EXCEPTION);
+        }
+        return user.getId();
     }
 }

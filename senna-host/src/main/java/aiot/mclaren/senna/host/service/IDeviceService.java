@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.Device;
 import aiot.mclaren.senna.model.enums.DeviceEnableEnum;
 import aiot.mclaren.senna.sdk.dto.DeviceDTO;
@@ -20,16 +19,16 @@ import java.util.List;
  */
 public interface IDeviceService extends IService<Device> {
 
-    DataResponse<DeviceDTO> create(DeviceBody body);
+    DeviceDTO create(DeviceBody body);
 
-    DataResponse<List<DeviceDTO>> batchCreate(BatchDeviceBody body);
+    List<DeviceDTO> batchCreate(BatchDeviceBody body);
 
-    DataResponse<PageList<DeviceDTO>> queryPage(DeviceQuery query);
+    PageList<DeviceDTO> queryPage(DeviceQuery query);
 
     Device getByDeviceNameAndProductKey(String deviceName, String productKey);
 
-    DataResponse<Boolean> updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable);
+    boolean updateEnableStatus(DeviceEnableBody body, DeviceEnableEnum enable);
 
-    DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body);
+    boolean updateDeviceStatus(DeviceStatusBody body);
 
 }

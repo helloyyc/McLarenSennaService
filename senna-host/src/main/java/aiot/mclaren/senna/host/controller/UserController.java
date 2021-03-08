@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.controller;
 
-
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.host.service.IUserService;
 import aiot.mclaren.senna.sdk.api.UserApi;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author lsj
@@ -28,12 +27,12 @@ public class UserController implements UserApi {
 
     @Override
     public DataResponse<UserDTO> login(UserLoginBody body) {
-        return userService.login(body);
+        return DataResponse.success(userService.login(body));
     }
 
     @Override
     public DataResponse<Long> register(UserRegisterBody body) {
-        return userService.register(body);
+        return DataResponse.success(userService.register(body));
     }
 }
 

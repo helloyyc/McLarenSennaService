@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.User;
 import aiot.mclaren.senna.sdk.dto.UserDTO;
 import aiot.mclaren.senna.sdk.request.UserLoginBody;
@@ -17,8 +16,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
-    DataResponse<UserDTO> login(UserLoginBody body);
+    UserDTO login(UserLoginBody body);
 
-    DataResponse<Long> register(UserRegisterBody body);
+    Long register(UserRegisterBody body);
 
 }

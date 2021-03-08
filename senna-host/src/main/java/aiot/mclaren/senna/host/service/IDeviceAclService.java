@@ -1,6 +1,5 @@
 package aiot.mclaren.senna.host.service;
 
-import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.model.entity.DeviceAcl;
 import aiot.mclaren.senna.sdk.dto.DeviceAclDTO;
 import aiot.mclaren.senna.sdk.request.DeviceAclBody;
@@ -25,7 +24,7 @@ public interface IDeviceAclService extends IService<DeviceAcl> {
 
     boolean initSysDefaultAcl();
 
-    DataResponse<DeviceAclDTO> createOrUpdate(DeviceAclBody body);
+    DeviceAclDTO createOrUpdate(DeviceAclBody body);
 
 
 }

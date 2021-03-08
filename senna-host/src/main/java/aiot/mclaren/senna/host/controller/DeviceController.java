@@ -11,8 +11,6 @@ import aiot.mclaren.senna.sdk.response.PageList;
 import cn.hutool.crypto.SecureUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -33,17 +31,17 @@ public class DeviceController implements DeviceApi {
 
     @Override
     public DataResponse<DeviceDTO> create(DeviceBody body) {
-        return deviceService.create(body);
+        return DataResponse.success(deviceService.create(body));
     }
 
     @Override
     public DataResponse<List<DeviceDTO>> batchCreate(BatchDeviceBody body) {
-        return deviceService.batchCreate(body);
+        return DataResponse.success(deviceService.batchCreate(body));
     }
 
     @Override
     public DataResponse<PageList<DeviceDTO>> listPage(DeviceQuery query) {
-        return deviceService.queryPage(query);
+        return DataResponse.success(deviceService.queryPage(query));
     }
 
     @Override
@@ -58,12 +56,12 @@ public class DeviceController implements DeviceApi {
 
     @Override
     public DataResponse<Boolean> enableDevice(DeviceEnableBody body) {
-        return deviceService.updateEnableStatus(body, DeviceEnableEnum.ENABLE);
+        return DataResponse.success(deviceService.updateEnableStatus(body, DeviceEnableEnum.ENABLE));
     }
 
     @Override
     public DataResponse<Boolean> disableDevice(DeviceEnableBody body) {
-        return deviceService.updateEnableStatus(body, DeviceEnableEnum.DISABLE);
+        return DataResponse.success(deviceService.updateEnableStatus(body, DeviceEnableEnum.DISABLE));
     }
 
     @Override
@@ -73,7 +71,7 @@ public class DeviceController implements DeviceApi {
 
     @Override
     public DataResponse<Boolean> updateDeviceStatus(DeviceStatusBody body) {
-        return deviceService.updateDeviceStatus(body);
+        return DataResponse.success(deviceService.updateDeviceStatus(body));
     }
 }
 
