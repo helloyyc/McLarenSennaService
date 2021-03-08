@@ -13,6 +13,12 @@ spring:
     loadbalancer:
       ribbon:
         enabled: false
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}
+        include-hostname-in-instance-id: true
+        prefer-ip-address: true
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
@@ -31,9 +37,6 @@ spring:
       host: 192.168.3.158
       port: 8500
       discovery:
-        instance-id: ${spring.application.name}
-        prefer-ip-address: true
-        include-hostname-in-instance-id: true
         ip-address: 192.168.3.93
 
 
@@ -50,8 +53,5 @@ spring:
     password: mxOlZ&c92Cg
   cloud:
     consul:
-      host: 192.168.3.158
+      host: consul1
       port: 8500
-      discovery:
-        instance-id: ${spring.application.name}-${hostname:test}
-        prefer-ip-address: true
