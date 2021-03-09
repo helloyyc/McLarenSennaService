@@ -24,10 +24,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     use-generated-keys: true
-broker:
-  address: http://192.168.3.158:21001
-  username: aidong
-  password: 2l0f2r01033:)1224
 
 ---
 # dev
@@ -43,7 +39,10 @@ spring:
       port: 8500
       discovery:
         ip-address: 192.168.3.93
-
+broker:
+  address: http://192.168.3.158:21001
+  username: aidong
+  password: 2l0f2r01033:)1224
 
 mybatis-plus:
   configuration:
@@ -60,3 +59,7 @@ spring:
     consul:
       host: consul1
       port: 8500
+broker:
+  address: http://iot-server.mqtt:21001
+  username: mclaren
+  password: mclaren2021
