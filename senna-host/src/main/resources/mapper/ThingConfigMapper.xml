@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="aiot.mclaren.senna.host.mapper.ThingConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="aiot.mclaren.senna.model.entity.ThingConfig">
+        <result column="id" property="id" />
+        <result column="create_dt" property="createDt" />
+        <result column="update_dt" property="updateDt" />
+        <result column="config_id" property="configId" />
+        <result column="config_size" property="configSize" />
+        <result column="device_name" property="deviceName" />
+        <result column="product_key" property="productKey" />
+        <result column="status" property="status" />
+        <result column="scope" property="scope" />
+        <result column="config_format" property="configFormat" />
+        <result column="sign_method" property="signMethod" />
+        <result column="sign" property="sign" />
+        <result column="oss_path" property="ossPath" />
+        <result column="oss_url" property="ossUrl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_dt,
+        update_dt,
+        config_id, config_size, device_name, product_key, status, scope, config_format, sign_method, sign, oss_path, oss_url
+    </sql>
+
+</mapper>

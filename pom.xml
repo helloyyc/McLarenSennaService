@@ -28,12 +28,13 @@
         <velocity-engine-core.version>2.2</velocity-engine-core.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <common-pool.version>2.9.0</common-pool.version>
-        <mclaren-commons.version>0.0.4-SNAPSHOT</mclaren-commons.version>
+        <mclaren-commons.version>0.0.6-SNAPSHOT</mclaren-commons.version>
         <swagger.version>2.10.5</swagger.version>
         <swagger-model.version>1.5.23</swagger-model.version>
         <emqx-sdk.version>0.0.1-SNAPSHOT</emqx-sdk.version>
         <gson.version>2.8.6</gson.version>
         <shiro.version>1.7.0</shiro.version>
+        <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
     </properties>
 
     <dependencies>
@@ -170,6 +171,12 @@
                 <artifactId>mybatis-plus-extension</artifactId>
                 <groupId>com.baomidou</groupId>
                 <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
             </dependency>
 
         </dependencies>

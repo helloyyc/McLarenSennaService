@@ -24,7 +24,12 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     use-generated-keys: true
-
+#ali:
+#  oss:
+#    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+#    access-key-id: LTAI4FyUXcerZa94iNbnYfoQ
+#    access-key-secret: 0hZrqhAGTlv5llEkaZHRRFR3R8Q0VF
+#    bucket: jsmb
 ---
 # dev
 spring:
