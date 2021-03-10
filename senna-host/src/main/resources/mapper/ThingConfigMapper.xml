@@ -18,6 +18,7 @@
         <result column="sign" property="sign" />
         <result column="oss_path" property="ossPath" />
         <result column="oss_url" property="ossUrl" />
+        <result column="oss_version_id" property="ossVersionId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -25,7 +26,7 @@
         id,
         create_dt,
         update_dt,
-        config_id, config_size, device_name, product_key, status, scope, config_format, sign_method, sign, oss_path, oss_url
+        config_id, config_size, device_name, product_key, status, scope, config_format, sign_method, sign, oss_path, oss_url, oss_version_id
     </sql>
 
 </mapper>

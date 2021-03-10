@@ -28,7 +28,7 @@
         <velocity-engine-core.version>2.2</velocity-engine-core.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <common-pool.version>2.9.0</common-pool.version>
-        <mclaren-commons.version>0.0.6-SNAPSHOT</mclaren-commons.version>
+        <mclaren-commons.version>0.0.7-SNAPSHOT</mclaren-commons.version>
         <swagger.version>2.10.5</swagger.version>
         <swagger-model.version>1.5.23</swagger-model.version>
         <emqx-sdk.version>0.0.1-SNAPSHOT</emqx-sdk.version>
