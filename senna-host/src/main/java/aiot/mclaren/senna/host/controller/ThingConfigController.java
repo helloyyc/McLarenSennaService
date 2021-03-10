@@ -6,6 +6,7 @@ import aiot.mclaren.senna.host.service.IThingConfigService;
 import aiot.mclaren.senna.sdk.api.ThingConfigApi;
 import aiot.mclaren.senna.sdk.dto.ThingConfigBody;
 import aiot.mclaren.senna.sdk.dto.ThingConfigDTO;
+import aiot.mclaren.senna.sdk.request.ThingConfigDetailQuery;
 import aiot.mclaren.senna.sdk.request.ThingConfigQuery;
 import aiot.mclaren.senna.sdk.response.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ThingConfigController implements ThingConfigApi {
     }
 
     @Override
-    public DataResponse<ThingConfigDTO> getDetail(ThingConfigQuery query) {
+    public DataResponse<ThingConfigDTO> getDetail(ThingConfigDetailQuery query) {
         return DataResponse.success(thingConfigService.queryDetail(query));
     }
 }

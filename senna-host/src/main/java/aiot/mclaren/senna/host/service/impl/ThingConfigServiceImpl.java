@@ -15,6 +15,7 @@ import aiot.mclaren.senna.model.enums.ConfigScopeEnum;
 import aiot.mclaren.senna.sdk.dto.ThingConfigBody;
 import aiot.mclaren.senna.sdk.dto.ThingConfigDTO;
 import aiot.mclaren.senna.sdk.exception.ApiException;
+import aiot.mclaren.senna.sdk.request.ThingConfigDetailQuery;
 import aiot.mclaren.senna.sdk.request.ThingConfigQuery;
 import aiot.mclaren.senna.sdk.response.ErrorCode;
 import aiot.mclaren.senna.sdk.response.PageList;
@@ -101,7 +102,7 @@ public class ThingConfigServiceImpl extends ServiceImpl<ThingConfigMapper, Thing
     }
 
     @Override
-    public ThingConfigDTO queryDetail(ThingConfigQuery query) {
+    public ThingConfigDTO queryDetail(ThingConfigDetailQuery query) {
         QueryWrapper<ThingConfig> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("product_key", query.getProductKey())
             .eq("scope", query.getScope())

@@ -3,6 +3,7 @@ package aiot.mclaren.senna.sdk.api;
 import aiot.mclaren.commons.response.DataResponse;
 import aiot.mclaren.senna.sdk.dto.ThingConfigBody;
 import aiot.mclaren.senna.sdk.dto.ThingConfigDTO;
+import aiot.mclaren.senna.sdk.request.ThingConfigDetailQuery;
 import aiot.mclaren.senna.sdk.request.ThingConfigQuery;
 import aiot.mclaren.senna.sdk.response.PageList;
 import io.swagger.annotations.Api;
@@ -32,6 +33,6 @@ public interface ThingConfigApi {
 
     @ApiOperation("物配置详情")
     @GetMapping("detail")
-    DataResponse<ThingConfigDTO> getDetail(@Validated ThingConfigQuery query);
+    DataResponse<ThingConfigDTO> getDetail(@Validated ThingConfigDetailQuery query);
 
 }

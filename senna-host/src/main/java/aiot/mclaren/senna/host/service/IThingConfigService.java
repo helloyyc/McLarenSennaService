@@ -3,6 +3,7 @@ package aiot.mclaren.senna.host.service;
 import aiot.mclaren.senna.model.entity.ThingConfig;
 import aiot.mclaren.senna.sdk.dto.ThingConfigBody;
 import aiot.mclaren.senna.sdk.dto.ThingConfigDTO;
+import aiot.mclaren.senna.sdk.request.ThingConfigDetailQuery;
 import aiot.mclaren.senna.sdk.request.ThingConfigQuery;
 import aiot.mclaren.senna.sdk.response.PageList;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -21,5 +22,5 @@ public interface IThingConfigService extends IService<ThingConfig> {
 
     PageList<ThingConfigDTO> queryPage(ThingConfigQuery query);
 
-    ThingConfigDTO queryDetail(ThingConfigQuery query);
+    ThingConfigDTO queryDetail(ThingConfigDetailQuery query);
 }
