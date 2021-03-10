@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lsj
- * @since 2021-03-09
+ * @since 2021-03-10
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -39,7 +39,7 @@ public class ThingConfig extends BaseEntity {
     private String productKey;
 
     /**
-     * 配置状态
+     * 配置状态 1表示有效 0表示失效
      */
     private Integer status;
 
@@ -72,6 +72,11 @@ public class ThingConfig extends BaseEntity {
      * oss的地址
      */
     private String ossUrl;
+
+    /**
+     * oss的版本ID
+     */
+    private String ossVersionId;
 
 
 }

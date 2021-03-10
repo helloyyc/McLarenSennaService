@@ -23,13 +23,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static aiot.mclaren.senna.host.config.JacksonConfig.LOCAL_DATE_TIME_FORMATTER;
-
 /**
  * @author lsj
  * @date 2021/3/4 10:15
  */
 public class JsonUtils {
+
+    public static final DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static final ObjectMapper mapper = new ObjectMapper();
 
