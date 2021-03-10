@@ -22,6 +22,6 @@ public class ThingConfigQuery extends PageQuery {
     private String deviceName;
     @ApiModelProperty("配置范围")
     private String scope;
-    @ApiModelProperty("配置状态")
-    private Integer status;
+    @ApiModelProperty("配置状态 默认为: 生效 1")
+    private Integer status = 1;
 }
