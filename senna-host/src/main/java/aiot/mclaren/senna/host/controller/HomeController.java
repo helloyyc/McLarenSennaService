@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController implements HomeApi {
     @Override
     public DataResponse<Long> index() {
-        DataResponse<Long> longDataResponse = new DataResponse<>();
-        longDataResponse.setData(System.currentTimeMillis());
-        return longDataResponse;
+        return DataResponse.success(System.currentTimeMillis());
     }
 }

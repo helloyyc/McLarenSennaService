@@ -1,112 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<packaging>pom</packaging>
-	<modules>
-		<module>senna-host</module>
-		<module>senna-model</module>
-		<module>senna-sdk</module>
-	</modules>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.8.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>aiot.mclaren</groupId>
-	<artifactId>senna</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>senna</name>
-	<description>dms project for aiot system</description>
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-		<hutool.version>5.5.7</hutool.version>
-		<mybatis.plus.version>3.4.1</mybatis.plus.version>
-		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-		<common-pool.version>2.9.0</common-pool.version>
-		<mclaren-commons.version>0.0.1-SNAPSHOT</mclaren-commons.version>
-		<swagger.version>2.10.5</swagger.version>
-	</properties>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>senna-host</module>
+        <module>senna-model</module>
+        <module>senna-sdk</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>aiot.mclaren</groupId>
+    <artifactId>senna</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+    <name>senna</name>
+    <description>dms project for aiot system</description>
+    <properties>
+        <skipTests>true</skipTests>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+        <hutool.version>5.5.7</hutool.version>
+        <mybatis.plus.version>3.4.1</mybatis.plus.version>
+        <velocity-engine-core.version>2.2</velocity-engine-core.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <common-pool.version>2.9.0</common-pool.version>
+        <mclaren-commons.version>0.0.7-SNAPSHOT</mclaren-commons.version>
+        <swagger.version>2.10.5</swagger.version>
+        <swagger-model.version>1.5.23</swagger-model.version>
+        <emqx-sdk.version>0.0.1-SNAPSHOT</emqx-sdk.version>
+        <gson.version>2.8.6</gson.version>
+        <shiro.version>1.7.0</shiro.version>
+        <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
+    </properties>
 
-	<dependencies>
+    <dependencies>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>aiot.mclaren</groupId>
-				<artifactId>senna-host</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>aiot.mclaren</groupId>
+                <artifactId>senna-host</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>aiot.mclaren</groupId>
-				<artifactId>senna-model</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>aiot.mclaren</groupId>
+                <artifactId>senna-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>aiot.mclaren</groupId>
-				<artifactId>senna-sdk</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>aiot.mclaren</groupId>
+                <artifactId>senna-sdk</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<dependency>
-				<groupId>cn.hutool</groupId>
-				<artifactId>hutool-all</artifactId>
-				<version>${hutool.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>aiot.mclaren</groupId>
-				<artifactId>commons</artifactId>
-				<version>${mclaren-commons.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>aiot.mclaren</groupId>
+                <artifactId>commons</artifactId>
+                <version>${mclaren-commons.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger2</artifactId>
-				<version>${swagger.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>io.swagger</groupId>
-						<artifactId>swagger-models</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>swagger-annotations</artifactId>
+                        <groupId>io.swagger</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-			<dependency>
-				<groupId>io.swagger</groupId>
-				<artifactId>swagger-models</artifactId>
-				<version>1.5.23</version>
-			</dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger-model.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger-ui</artifactId>
-				<version>${swagger.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-spring-webmvc</artifactId>
-				<version>${swagger.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-spring-webmvc</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ling5821</groupId>
+                <artifactId>emqx-sdk</artifactId>
+                <version>${emqx-sdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring-boot-web-starter</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <groupId>com.baomidou</groupId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>oss-sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

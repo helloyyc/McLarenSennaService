@@ -1,0 +1,73 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: aiot-mclaren-senna-service
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}
+        include-hostname-in-instance-id: true
+        prefer-ip-address: true
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+mclaren:
+  oss:
+    access-key: LTAI4FyUXcerZa94iNbnYfoQ
+    access-secret: 0hZrqhAGTlv5llEkaZHRRFR3R8Q0VF
+    bucket-name: jsmb
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    type: aliyun
+
+---
+# dev
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://mysql-internet-cn-east-2-91aba77060114087.rds.jdcloud.com:3306/mclaren_senna_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root_mclaren
+    password: mxOlZ&c92Cg
+  cloud:
+    consul:
+      host: 192.168.3.158
+      port: 8500
+      discovery:
+        ip-address: 192.168.3.93
+broker:
+  address: http://192.168.3.158:21001
+  username: aidong
+  password: 2l0f2r01033:)1224
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+---
+# test
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://mysql-internet-cn-east-2-91aba77060114087.rds.jdcloud.com:3306/mclaren_senna_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root_mclaren
+    password: mxOlZ&c92Cg
+  cloud:
+    consul:
+      host: consul1
+      port: 8500
+broker:
+  address: http://iot-server.mqtt:18083
+  username: mclaren
+  password: mclaren2021

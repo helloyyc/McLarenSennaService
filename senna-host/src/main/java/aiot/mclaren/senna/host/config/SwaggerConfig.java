@@ -1,4 +1,4 @@
-package aiot.mclaren.senna.host.swagger;
+package aiot.mclaren.senna.host.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-            .title("McLaren Senna Service API Doc")
+            .title("McLaren Senna(物联网平台)")
             .description("This is a restful api document of Mclaren Senna service.")
             .version("1.0")
             .build();

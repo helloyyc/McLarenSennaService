@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="aiot.mclaren.senna.host.mapper.TagMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="aiot.mclaren.senna.model.entity.Tag">
+        <result column="id" property="id" />
+        <result column="create_dt" property="createDt" />
+        <result column="update_dt" property="updateDt" />
+        <result column="tag_key" property="tagKey" />
+        <result column="tag_value" property="tagValue" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_dt,
+        update_dt,
+        tag_key, tag_value
+    </sql>
+
+</mapper>
